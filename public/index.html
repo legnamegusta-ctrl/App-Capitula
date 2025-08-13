@@ -17,6 +17,18 @@
             <button id="btn-login">Entrar</button>
             <button id="btn-registrar">Registrar</button>
         </div>
+
+        <div id="modal-registrar-usuario" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3>Registrar Novo Usuário</h3>
+                <input type="text" id="registro-nome" placeholder="Nome">
+                <input type="text" id="registro-sobrenome" placeholder="Sobrenome">
+                <input type="email" id="registro-email" placeholder="E-mail">
+                <input type="password" id="registro-senha" placeholder="Senha">
+                <button id="btn-finalizar-registro">Cadastrar</button>
+                <button id="btn-fechar-registro-usuario" class="btn-secundario">Cancelar</button>
+            </div>
+        </div>
     </div>
 
     <div id="app-container" class="hidden">
@@ -265,18 +277,6 @@
 
                 <button id="btn-salvar-meta">Salvar Meta</button>
                 <button id="btn-fechar-meta-modal" class="btn-secundario">Cancelar</button>
-            </div>
-        </div>
-
-        <div id="modal-registrar-usuario" class="modal-overlay hidden">
-            <div class="modal-content">
-                <h3>Registrar Novo Usuário</h3>
-                <input type="text" id="registro-nome" placeholder="Nome">
-                <input type="text" id="registro-sobrenome" placeholder="Sobrenome">
-                <input type="email" id="registro-email" placeholder="E-mail">
-                <input type="password" id="registro-senha" placeholder="Senha">
-                <button id="btn-finalizar-registro">Cadastrar</button>
-                <button id="btn-fechar-registro-usuario" class="btn-secundario">Cancelar</button>
             </div>
         </div>
 
