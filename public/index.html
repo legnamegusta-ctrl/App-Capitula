@@ -1,4 +1,25 @@
-<div id="app-container" class="hidden">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitula</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div id="auth-container">
+        <div class="login-box">
+            <img src="img/logo.png" alt="Logo Capitula." class="logo-login">
+            <p>Entre com sua conta para acessar o acervo.</p>
+            <input type="email" id="email" placeholder="E-mail">
+            <input type="password" id="senha" placeholder="Senha">
+            <button id="btn-login">Entrar</button>
+            <button id="btn-registrar">Registrar</button>
+        </div>
+    </div>
+
+    <div id="app-container" class="hidden">
         <header class="app-header">
             <div class="header-title" id="header-title">
                 <img src="img/logo.png" alt="Logo Capitula." height="40" class="header-logo">
@@ -259,15 +280,15 @@
             </div>
         </div>
 
-    </div>
+        <nav class="bottom-nav">
+            <a href="#" class="nav-link" data-page="dashboard"><i class="fas fa-tachometer-alt"></i></a>
+            <a href="#" class="nav-link" data-page="acervo"><i class="fas fa-book"></i></a>
+            <a href="#" class="nav-link" data-page="registros"><i class="fas fa-list-ul"></i></a>
+            <a href="#" class="nav-link" data-page="metas"><i class="fas fa-bullseye"></i></a>
+            <a href="#" class="nav-link" data-page="calculadora"><i class="fas fa-calculator"></i></a>
+        </nav>
 
-    <nav class="bottom-nav">
-        <a href="#" class="nav-link" data-page="dashboard"><i class="fas fa-tachometer-alt"></i></a>
-        <a href="#" class="nav-link" data-page="acervo"><i class="fas fa-book"></i></a>
-        <a href="#" class="nav-link" data-page="registros"><i class="fas fa-list-ul"></i></a>
-        <a href="#" class="nav-link" data-page="metas"><i class="fas fa-bullseye"></i></a>
-        <a href="#" class="nav-link" data-page="calculadora"><i class="fas fa-calculator"></i></a>
-    </nav>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
