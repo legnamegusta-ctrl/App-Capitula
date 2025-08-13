@@ -57,6 +57,14 @@ export const handleAuthStateChanged = (user) => {
     const appContainer = document.getElementById('app-container');
     const userEmailSpan = document.getElementById('user-email');
 
+    if (!modalRegistrarUsuario) {
+        modalRegistrarUsuario = document.getElementById('modal-registrar-usuario');
+    }
+
+    if (modalRegistrarUsuario) {
+        modalRegistrarUsuario.classList.add('hidden');
+    }
+
     if (!authContainer || !appContainer || !userEmailSpan) {
         console.error("Erro: Elementos principais da interface não encontrados.");
         return;
