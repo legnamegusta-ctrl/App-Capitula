@@ -1,6 +1,6 @@
 // public/js/modules/auth.js
 
-import { auth } from './firebase.js';
+import { auth, db } from './firebase.js';
 
 // --- VARIÁVEIS DO NOVO MODAL DE REGISTRO ---
 const modalRegistrarUsuario = document.getElementById('modal-registrar-usuario');
@@ -63,15 +63,10 @@ export const handleAuthStateChanged = (user) => {
     }
 
     if (user) {
-        if (user.emailVerified) {
-            console.log("Usuário logado e verificado:", user.email);
-            authContainer.classList.add('hidden');
-            appContainer.classList.remove('hidden');
-            userEmailSpan.textContent = user.email;
-        } else {
-            alert("Por favor, verifique seu e-mail para continuar.");
-            auth.signOut();
-        }
+        console.log("Usuário logado:", user.email);
+        authContainer.classList.add('hidden');
+        appContainer.classList.remove('hidden');
+        userEmailSpan.textContent = user.email;
     } else {
         console.log("Nenhum usuário logado.");
         authContainer.classList.remove('hidden');
@@ -101,14 +96,16 @@ const registrarNovoUsuario = (nome, sobrenome, email, senha) => {
             user.updateProfile({
                 displayName: `${nome} ${sobrenome}`
             }).then(() => {
-                user.sendEmailVerification()
-                    .then(() => {
-                        alert("Usuário registrado com sucesso! Por favor, verifique seu e-mail para ativar a conta.");
-                        if (modalRegistrarUsuario) {
-                             modalRegistrarUsuario.classList.add('hidden');
-                        }
-                        auth.signOut();
-                    });
+                db.collection('usuarios').doc(user.uid).set({
+                    nome,
+                    sobrenome,
+                    email
+                }).then(() => {
+                    alert("Usuário registrado com sucesso!");
+                    if (modalRegistrarUsuario) {
+                        modalRegistrarUsuario.classList.add('hidden');
+                    }
+                });
             });
         })
         .catch(error => alert("Erro ao registrar: " + error.message));
