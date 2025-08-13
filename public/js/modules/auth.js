@@ -3,13 +3,13 @@
 import { auth, db } from './firebase.js';
 
 // --- VARIÁVEIS DO NOVO MODAL DE REGISTRO ---
-const modalRegistrarUsuario = document.getElementById('modal-registrar-usuario');
-const btnFinalizarRegistro = document.getElementById('btn-finalizar-registro');
-const btnFecharRegistroUsuario = document.getElementById('btn-fechar-registro-usuario');
-const registroNomeInput = document.getElementById('registro-nome');
-const registroSobrenomeInput = document.getElementById('registro-sobrenome');
-const registroEmailInput = document.getElementById('registro-email');
-const registroSenhaInput = document.getElementById('registro-senha');
+let modalRegistrarUsuario;
+let btnFinalizarRegistro;
+let btnFecharRegistroUsuario;
+let registroNomeInput;
+let registroSobrenomeInput;
+let registroEmailInput;
+let registroSenhaInput;
 
 // Importa as funções que precisam ser chamadas depois do login
 const showPage = (pageId, updateUrl) => {
@@ -116,12 +116,21 @@ const logoutUser = () => {
 };
 
 export const setupAuthListeners = () => {
+    // Captura elementos após o carregamento do DOM
+    modalRegistrarUsuario = document.getElementById('modal-registrar-usuario');
+    btnFinalizarRegistro = document.getElementById('btn-finalizar-registro');
+    btnFecharRegistroUsuario = document.getElementById('btn-fechar-registro-usuario');
+    registroNomeInput = document.getElementById('registro-nome');
+    registroSobrenomeInput = document.getElementById('registro-sobrenome');
+    registroEmailInput = document.getElementById('registro-email');
+    registroSenhaInput = document.getElementById('registro-senha');
+
     const btnLogin = document.getElementById('btn-login');
     const btnRegistrar = document.getElementById('btn-registrar');
     const btnSair = document.getElementById('btn-sair');
     const emailInput = document.getElementById('email');
     const senhaInput = document.getElementById('senha');
-    
+
     if (btnLogin && emailInput && senhaInput) {
         btnLogin.addEventListener('click', () => {
             loginUser(emailInput.value, senhaInput.value);
@@ -131,19 +140,19 @@ export const setupAuthListeners = () => {
     if (btnRegistrar) {
         btnRegistrar.addEventListener('click', abrirModalRegistrar);
     }
-    
+
     if (btnFinalizarRegistro && registroNomeInput && registroSobrenomeInput && registroEmailInput && registroSenhaInput) {
         btnFinalizarRegistro.addEventListener('click', () => {
             const nome = registroNomeInput.value;
             const sobrenome = registroSobrenomeInput.value;
             const email = registroEmailInput.value;
             const senha = registroSenhaInput.value;
-            
+
             if (!nome || !sobrenome || !email || !senha) {
                 alert("Todos os campos são obrigatórios!");
                 return;
             }
-            
+
             registrarNovoUsuario(nome, sobrenome, email, senha);
         });
     }
@@ -155,7 +164,7 @@ export const setupAuthListeners = () => {
             }
         });
     }
-    
+
     if (btnSair) {
         btnSair.addEventListener('click', logoutUser);
     }
