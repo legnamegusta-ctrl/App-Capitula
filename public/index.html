@@ -1,0 +1,279 @@
+<div id="app-container" class="hidden">
+        <header class="app-header">
+            <div class="header-title" id="header-title">
+                <img src="img/logo.png" alt="Logo Capitula." height="40" class="header-logo">
+                <h1>Capitula.</h1>
+            </div>
+            <button id="btn-menu-perfil" class="icon-button"><i class="fas fa-user-circle"></i></button>
+        </header>
+
+        <div id="perfil-menu" class="perfil-menu hidden">
+            <span id="user-email"></span>
+            <a href="#" class="perfil-link" data-page="perfil">Perfil</a>
+            <a href="#" class="perfil-link" data-page="configuracoes">Configurações</a>
+            <button id="btn-sair">Sair</button>
+        </div>
+
+        <div id="page-dashboard" class="catalogo-container">
+            <div class="header-catalogo">
+                <h2>Dashboard</h2>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card clickable-card" data-card-target="livros-detalhes">
+                    <h3>Livros Catalogados</h3>
+                    <p id="total-livros">0</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Leituras Registradas</h3>
+                    <p id="total-leituras">0</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Sequência de Leitura</h3>
+                    <p id="sequencia-leitura">0</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Metas Alcançadas</h3>
+                    <p id="metas-alcancadas">0</p>
+                </div>
+            </div>
+            <div id="livros-detalhes" class="dashboard-details hidden">
+                <h4>Detalhes do Acervo</h4>
+                <p><strong>Autores Únicos:</strong> <span id="autores-unicos">0</span></p>
+                <p><strong>Gêneros Diferentes:</strong> <span id="generos-diferentes">0</span></p>
+                <p><strong>Total de Páginas:</strong> <span id="total-paginas">0</span></p>
+            </div>
+        </div>
+
+        <div id="page-acervo" class="catalogo-container hidden">
+            <div class="header-catalogo">
+                <div>
+                    <button id="btn-adicionar-livro" class="btn-principal-acervo">Adicionar Livro</button>
+                </div>
+                <h2>Acervo</h2>
+            </div>
+            <div class="search-and-filter">
+                <input type="text" id="search-input" placeholder="Buscar por título ou autor...">
+                <button id="sort-btn">Ordenar por Título <i class="fas fa-sort-alpha-down"></i></button>
+            </div>
+            <div id="livros-grid" class="livros-grid">
+            </div>
+        </div>
+
+        <div id="page-registros" class="catalogo-container hidden">
+            <div class="header-catalogo">
+                <div>
+                    <button id="btn-adicionar-registro" class="btn-principal-acervo">Adicionar Registro</button>
+                </div>
+                <h2>Registros de Leitura</h2>
+            </div>
+            <div class="search-and-filter">
+                <button id="sort-btn-registros">Ordenar por Título <i class="fas fa-sort-alpha-down"></i></button>
+            </div>
+            <div id="registros-grid" class="livros-grid">
+            </div>
+        </div>
+
+        <div id="page-metas" class="catalogo-container hidden">
+            <div class="header-catalogo">
+                <h2>Metas de Leitura</h2>
+                <div>
+                    <button id="btn-adicionar-meta" class="btn-principal-acervo">Adicionar Meta</button>
+                </div>
+            </div>
+            <div id="metas-grid" class="livros-grid">
+                <p>Nenhuma meta de leitura encontrada.</p>
+            </div>
+        </div>
+
+        <div id="page-calculadora" class="catalogo-container hidden">
+            <div class="header-catalogo">
+                <h2>Calculadora de Leitura</h2>
+            </div>
+            <div class="calculadora-box">
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="calculadora-modo" value="prazo" checked> Por Prazo Final
+                    </label>
+                    <label>
+                        <input type="radio" name="calculadora-modo" value="paginas"> Por Páginas por Dia
+                    </label>
+                </div>
+
+                <label for="calc-paginas">Total de Páginas:</label>
+                <input type="number" id="calc-paginas" placeholder="Ex: 300">
+
+                <div id="calc-prazo-final">
+                    <label for="calc-prazo-data">Data Final:</label>
+                    <input type="date" id="calc-prazo-data">
+                </div>
+
+                <div id="calc-paginas-dia" class="hidden">
+                    <label for="calc-paginas-diarias">Páginas por Dia:</label>
+                    <input type="number" id="calc-paginas-diarias" placeholder="Ex: 20">
+                </div>
+
+                <button id="btn-calcular">Calcular</button>
+
+                <div id="calc-resultado" class="calc-resultado-box hidden">
+                    <h4 id="resultado-titulo">Resultado:</h4>
+                    <p id="resultado-texto"></p>
+                    <button id="btn-criar-meta" class="btn-principal-acervo">Criar uma Meta com este resultado</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-perfil" class="catalogo-container hidden">
+            <div class="header-catalogo">
+                <h2>Perfil</h2>
+            </div>
+            <p>Informações do perfil do usuário.</p>
+        </div>
+
+        <div id="page-configuracoes" class="catalogo-container hidden">
+            <div class="header-catalogo">
+                <h2>Configurações</h2>
+            </div>
+        </div>
+
+        <div id="modal-adicionar-livro" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3 id="modal-title">Adicionar Novo Item</h3>
+
+                <label for="tipo-obra">Tipo de Obra:</label>
+                <select id="tipo-obra">
+                    <option value="proprio">Livro Próprio</option>
+                    <option value="coletanea">Coletânea</option>
+                    <option value="parte-de-um-livro">Parte de um Livro</option>
+                </select>
+
+                <div id="campos-comuns">
+                    <input type="text" id="livro-titulo" placeholder="Título">
+                    <input type="text" id="livro-autor" placeholder="Autor">
+                    <input type="text" id="livro-genero" placeholder="Gênero/Ramo">
+                    <input type="text" id="livro-editora" placeholder="Editora">
+                    <input type="text" id="livro-edicao" placeholder="Edição">
+                    <input type="number" id="livro-ano" placeholder="Ano">
+                    <input type="number" id="livro-paginas" placeholder="Número de Páginas">
+                </div>
+
+                <div id="campos-parte-livro" class="hidden">
+                    <label for="livro-coletanea">Em qual Coletânea?</label>
+                    <select id="livro-coletanea">
+                        <option value="">Selecione...</option>
+                        </select>
+                </div>
+
+                <div id="campos-complemento">
+                    <input type="text" id="livro-origem" placeholder="Origem (Ex: 'Presente de Aniversário')">
+                    <input type="text" id="livro-local" placeholder="Local (Ex: 'Prateleira superior')">
+                </div>
+
+                <button id="btn-salvar-livro">Salvar Livro</button>
+                <button id="btn-deletar-livro" class="btn-secundario hidden">Excluir Livro</button>
+                <button id="btn-fechar-modal" class="btn-secundario">Cancelar</button>
+            </div>
+        </div>
+
+        <div id="modal-adicionar-registro" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3 id="modal-registro-title">Adicionar Registro de Leitura</h3>
+
+                <label>O livro é do Acervo ou de Terceiros?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="origem-leitura" value="acervo" checked> Do Acervo
+                    </label>
+                    <label>
+                        <input type="radio" name="origem-leitura" value="terceiros"> De Terceiros
+                    </label>
+                </div>
+
+                <div id="form-acervo">
+                    <label for="livro-registro-acervo">Selecione o livro:</label>
+                    <select id="livro-registro-acervo">
+                        <option value="">Selecione...</option>
+                        </select>
+                </div>
+
+                <div id="form-terceiros" class="hidden">
+                    <input type="text" id="livro-registro-terceiros-titulo" placeholder="Título">
+                    <input type="text" id="livro-registro-terceiros-autor" placeholder="Autor">
+                    <input type="text" id="livro-registro-terceiros-descricao" placeholder="Terceiro (Ex: 'Biblioteca da escola')">
+                </div>
+
+                <label for="data-inicio-leitura">Data de Início:</label>
+                <input type="date" id="data-inicio-leitura">
+
+                <label for="data-fim-leitura">Data de Fim (obrigatória):</label>
+                <input type="date" id="data-fim-leitura" required>
+
+                <label for="comentarios-leitura">Comentários:</label>
+                <textarea id="comentarios-leitura" rows="4" placeholder="O que você achou do livro?"></textarea>
+
+                <button id="btn-salvar-registro">Salvar Registro</button>
+                <button id="btn-deletar-registro" class="btn-secundario hidden">Excluir Registro</button>
+                <button id="btn-fechar-registro-modal" class="btn-secundario">Cancelar</button>
+            </div>
+        </div>
+
+        <div id="modal-adicionar-meta" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3>Adicionar Nova Meta</h3>
+
+                <label for="meta-titulo">Título da Meta</label>
+                <input type="text" id="meta-titulo" placeholder="Ex: 'Ler 12 livros no ano'">
+
+                <label>Tipo de Meta</label>
+                <select id="meta-tipo">
+                    <option value="livros">Por Livros</option>
+                    <option value="paginas">Por Páginas</option>
+                </select>
+
+                <div id="meta-livros-campos">
+                    <label for="meta-livros-quantidade">Quantidade de Livros</label>
+                    <input type="number" id="meta-livros-quantidade" placeholder="Ex: 12">
+                </div>
+
+                <div id="meta-paginas-campos" class="hidden">
+                    <label for="meta-paginas-quantidade">Quantidade de Páginas</label>
+                    <input type="number" id="meta-paginas-quantidade" placeholder="Ex: 5000">
+                </div>
+
+                <label for="meta-prazo">Prazo (opcional)</label>
+                <input type="date" id="meta-prazo">
+
+                <button id="btn-salvar-meta">Salvar Meta</button>
+                <button id="btn-fechar-meta-modal" class="btn-secundario">Cancelar</button>
+            </div>
+        </div>
+
+        <div id="modal-registrar-usuario" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3>Registrar Novo Usuário</h3>
+                <input type="text" id="registro-nome" placeholder="Nome">
+                <input type="text" id="registro-sobrenome" placeholder="Sobrenome">
+                <input type="email" id="registro-email" placeholder="E-mail">
+                <input type="password" id="registro-senha" placeholder="Senha">
+                <button id="btn-finalizar-registro">Cadastrar</button>
+                <button id="btn-fechar-registro-usuario" class="btn-secundario">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-link" data-page="dashboard"><i class="fas fa-tachometer-alt"></i></a>
+        <a href="#" class="nav-link" data-page="acervo"><i class="fas fa-book"></i></a>
+        <a href="#" class="nav-link" data-page="registros"><i class="fas fa-list-ul"></i></a>
+        <a href="#" class="nav-link" data-page="metas"><i class="fas fa-bullseye"></i></a>
+        <a href="#" class="nav-link" data-page="calculadora"><i class="fas fa-calculator"></i></a>
+    </nav>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script type="module" src="js/app.js"></script>
+
+</body>
+</html>

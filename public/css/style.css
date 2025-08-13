@@ -1,0 +1,560 @@
+/* --- VARIAVEIS DE COR DA LOGO --- */
+:root {
+  --cor-fundo-principal: #f5f5dc; /* cor creme */
+  --cor-destaque: #FFFFFF; /* Branco */
+  --cor-secundaria: #4a001b; /* roxo mais forte */
+  --cor-texto-placeholder: #aaaaaa; /* Cinza para o placeholder */
+  --cor-cinza-claro: #f0f0f0;
+  --cor-texto-escuro: #000000; /* Preto */
+  
+  --fonte-principal: 'Nunito Sans', sans-serif;
+}
+
+/* --- ESTILOS GERAIS E DA TELA DE LOGIN --- */
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-escuro);
+    margin: 0;
+    overflow-x: hidden; /* Evita a rolagem horizontal */
+    padding-bottom: 60px; /* Espaço para a barra de navegação inferior */
+}
+
+/* Centraliza a caixa de login na tela inteira */
+#auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 100% da altura da tela */
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 380px;
+    padding: 40px;
+    background-color: var(--cor-secundaria);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.logo-login {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    color: var(--cor-destaque);
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-escuro);
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.login-box input::placeholder {
+    color: var(--cor-texto-placeholder);
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+}
+
+.login-box button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#btn-login {
+    background-color: var(--cor-texto-escuro);
+    color: var(--cor-destaque);
+}
+#btn-login:hover {
+    opacity: 0.9;
+}
+
+#btn-registrar {
+    background-color: transparent;
+    color: var(--cor-destaque);
+}
+#btn-registrar:hover {
+    color: var(--cor-cinza-claro);
+}
+
+/* --- CLASSE UTILITARIA --- */
+.hidden {
+    display: none !important;
+}
+
+/* --- ESTILOS DO APP PÓS-LOGIN --- */
+body.app-view {
+    background-color: var(--cor-fundo-principal);
+}
+
+/* Novos estilos do cabeçalho */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    background-color: var(--cor-secundaria);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+.app-header .header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    justify-content: center;
+    cursor: pointer;
+}
+.app-header .header-title h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--cor-destaque);
+}
+.app-header .header-logo {
+    height: 40px;
+}
+.icon-button {
+    background: none;
+    border: none;
+    color: var(--cor-destaque);
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0;
+    height: 40px;
+    width: 40px;
+}
+.icon-button:hover {
+    opacity: 0.8;
+}
+
+/* Estilos para o menu de perfil */
+#perfil-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: var(--cor-secundaria);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+    z-index: 999;
+    width: 200px;
+    text-align: right;
+}
+#perfil-menu span {
+    color: var(--cor-texto-placeholder);
+    font-weight: normal;
+    text-align: center;
+    border-bottom: 1px solid var(--cor-fundo-principal);
+    margin-bottom: 5px;
+    display: block;
+    padding: 10px;
+}
+#perfil-menu a, #perfil-menu button {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--cor-destaque);
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    text-align: right;
+    box-sizing: border-box;
+    width: 100%;
+}
+#perfil-menu a:hover, #perfil-menu button:hover {
+    background-color: var(--cor-fundo-principal);
+}
+#btn-sair {
+    background-color: var(--cor-destaque);
+    color: var(--cor-fundo-principal);
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* --- ESTILOS DA BARRA DE NAVEGAÇÃO INFERIOR --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--cor-secundaria);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.bottom-nav .nav-link {
+    color: var(--cor-destaque);
+    text-decoration: none;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    transition: background-color 0.2s;
+}
+
+.bottom-nav .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav .nav-link.active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* --- ESTILOS DO DASHBOARD --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.dashboard-card {
+    background-color: var(--cor-secundaria);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.dashboard-card h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: var(--cor-destaque);
+}
+.dashboard-card p {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 0;
+}
+.dashboard-card.clickable-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.dashboard-card.clickable-card:hover {
+    transform: translateY(-5px);
+}
+.dashboard-details {
+    background-color: var(--cor-secundaria);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* --- ESTILOS DA CALCULADORA --- */
+.calculadora-box {
+    background-color: var(--cor-secundaria);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+.calculadora-box input, .calculadora-box select, .calculadora-box button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-escuro);
+}
+.calculadora-box input::placeholder {
+    color: var(--cor-texto-placeholder);
+}
+.calculadora-box button {
+    background-color: var(--cor-destaque);
+    color: var(--cor-fundo-principal);
+    font-weight: bold;
+    cursor: pointer;
+}
+.calc-resultado-box {
+    background-color: var(--cor-fundo-principal);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+}
+.calc-resultado-box h4 {
+    margin: 0 0 10px;
+    color: var(--cor-destaque);
+}
+.calc-resultado-box p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.calc-resultado-box button {
+    margin-top: 15px;
+}
+
+/* --- CONTEÚDO PRINCIPAL E BOTÕES --- */
+.catalogo-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 40px;
+    color: var(--cor-texto-escuro);
+}
+.search-and-filter {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.search-and-filter input {
+    flex-grow: 1;
+    max-width: 300px;
+}
+.search-and-filter input, .search-and-filter button {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-destaque);
+    font-size: 1em;
+    box-sizing: border-box;
+}
+.search-and-filter input::placeholder {
+    color: var(--cor-texto-placeholder);
+}
+#sort-btn, #sort-btn-registros {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-destaque);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+
+.header-catalogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.header-catalogo h2 {
+    color: var(--cor-texto-escuro);
+    margin: 0;
+}
+.header-catalogo div {
+    display: flex;
+    gap: 10px;
+}
+.btn-principal-acervo {
+    background-color: var(--cor-destaque);
+    color: var(--cor-fundo-principal);
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-principal-acervo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}
+
+.livros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+/* Novos estilos para os cards como "acordeão" */
+.livro-card {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-destaque);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.livro-card-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.livro-card-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.livro-card-content {
+    padding: 0 20px 20px;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+.livro-card.expanded .livro-card-content {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}
+.livro-card-content p {
+    margin: 5px 0;
+}
+.card-actions {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.card-actions button {
+    background: none;
+    border: none;
+    color: var(--cor-texto-placeholder);
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 5px;
+    transition: color 0.2s;
+}
+.card-actions button:hover {
+    color: var(--cor-destaque);
+}
+.delete-btn:hover {
+    color: red !important;
+}
+.expand-btn {
+    margin-left: 10px;
+    font-size: 1em;
+    padding: 5px;
+}
+.livro-card-header .card-actions span {
+    color: var(--cor-texto-placeholder);
+    font-size: 0.9em;
+}
+
+
+/* --- ESTILOS DO MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-destaque);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.modal-content h3 {
+    margin-top: 0;
+    text-align: center;
+    color: var(--cor-destaque);
+}
+.modal-content input, .modal-content select, .modal-content textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-escuro);
+    width: 100%;
+    box-sizing: border-box;
+}
+.modal-content input::placeholder {
+    color: var(--cor-texto-placeholder);
+}
+.modal-content input:focus, .modal-content select:focus, .modal-content textarea:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+}
+.modal-content button {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+#btn-salvar-livro, #btn-salvar-registro, #btn-salvar-meta {
+    background-color: var(--cor-destaque);
+    color: var(--cor-secundaria);
+}
+#btn-deletar-livro, #btn-deletar-registro {
+    background-color: #e74c3c;
+    color: var(--cor-destaque);
+    margin-top: 10px;
+}
+#btn-fechar-modal, #btn-fechar-registro-modal, #btn-fechar-meta-modal {
+    background-color: transparent;
+    color: var(--cor-texto-placeholder);
+    border: 1px solid var(--cor-texto-placeholder);
+}
+.radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* --- ESTILOS PARA TELAS PEQUENAS (AJUSTE MOBILE) --- */
+@media (max-width: 500px) {
+    .catalogo-container {
+        padding: 0 20px;
+    }
+    .search-and-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-and-filter input, .search-and-filter button {
+        width: 100%;
+        max-width: none;
+    }
+    .header-catalogo {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .header-catalogo h2 {
+        align-self: center;
+    }
+    .header-catalogo div {
+        width: 100%;
+        justify-content: center;
+    }
+}
